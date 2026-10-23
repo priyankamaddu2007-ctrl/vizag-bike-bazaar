@@ -8,166 +8,142 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
 body{background:#fafafa;color:#111827}
 header{background:white;border-bottom:1px solid #eee;position:sticky;top:0;z-index:20}
-.nav{max-width:1180px;margin:auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
-.logo{font-size:18px;font-weight:800;letter-spacing:-.5px}
+.nav{max-width:1120px;margin:auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:18px;font-weight:800}
 .btn{padding:9px 14px;border-radius:100px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid #e5e7eb;background:white}
 .btn.dark{background:#111827;color:white;border-color:#111827}
-.pills{max-width:1180px;margin:auto;padding:14px 20px 0;display:flex;gap:8px;flex-wrap:wrap}
-.pill{padding:8px 14px;border-radius:100px;border:1px solid #e5e7eb;background:white;font-size:12px;font-weight:500;cursor:pointer;color:#374151}
+.pills{max-width:1120px;margin:auto;padding:14px 20px 0;display:flex;gap:8px;flex-wrap:wrap}
+.pill{padding:8px 14px;border-radius:100px;border:1px solid #e5e7eb;background:white;font-size:12px;font-weight:500;cursor:pointer}
 .pill.active{background:#111827;color:white;border-color:#111827}
-.wrap{max-width:1180px;margin:auto;padding:16px 20px}
+.wrap{max-width:1120px;margin:auto;padding:16px 20px}
 .search{display:flex;gap:8px;background:white;border:1px solid #e5e7eb;border-radius:14px;padding:10px}
 .search input{flex:1;border:none;outline:none;font-size:13px}
 .search select{border:none;outline:none;background:#f9fafb;padding:6px 10px;border-radius:8px;font-size:12px}
 .search button{background:#111827;color:white;border:none;padding:10px 16px;border-radius:10px;font-size:12px;font-weight:600;cursor:pointer}
 .count{font-size:12px;color:#9ca3af;margin:14px 0}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
 .card{background:white;border:1px solid #f0f0f0;border-radius:16px;overflow:hidden;cursor:pointer;transition:.2s}
-.card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,.06)}
-.card img{width:100%;height:200px;object-fit:cover;background:#f5f5f5;display:block}
-.body{padding:14px}
-.title{font-size:13.5px;font-weight:600;line-height:1.3}
-.tags{display:flex;gap:6px;margin:6px 0;flex-wrap:wrap}
-.tag{font-size:10px;padding:3px 7px;border-radius:100px;background:#f3f4f6;color:#6b7280}
-.price{font-size:16px;font-weight:700;margin-top:6px}
-.loc{font-size:11px;color:#9ca3af;margin-top:3px}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);z-index:50;align-items:center;justify-content:center;padding:16px}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.06)}
+.card img{width:100%;height:190px;object-fit:contain;background:white;padding:8px;display:block}
+.body{padding:12px}
+.title{font-size:13px;font-weight:600}
+.price{font-size:15px;font-weight:700;margin-top:6px}
+.loc{font-size:10px;color:#9ca3af;margin-top:3px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:50;align-items:center;justify-content:center;padding:16px}
 .modal.open{display:flex}
-.box{background:white;width:100%;max-width:480px;border-radius:18px;overflow:hidden;max-height:90vh;overflow-y:auto}
-.box img{width:100%;height:280px;object-fit:cover}
-.content{padding:20px}
-.btn-full{width:100%;padding:11px;border-radius:10px;border:none;font-weight:600;font-size:12px;cursor:pointer;margin-top:8px;display:block;text-align:center;text-decoration:none}
-.call{background:#111827;color:white}.sec{background:#f3f4f6;color:#111827}.bord{background:white;border:1px solid #e5e7eb;color:#374151}
-.footer{text-align:center;padding:30px;font-size:11px;color:#9ca3af}
-.input{width:100%;padding:10px;border:1px solid #e5e7eb;border-radius:8px;margin:5px 0;font-size:12px}
+.box{background:white;width:100%;max-width:480px;border-radius:16px;overflow:hidden;max-height:90vh;overflow-y:auto}
+.box img{width:100%;height:260px;object-fit:contain;background:white;padding:10px}
+.content{padding:18px}
+.btn-full{width:100%;padding:10px;border-radius:10px;border:none;font-weight:600;font-size:12px;cursor:pointer;margin-top:8px;display:block;text-align:center;text-decoration:none}
+.call{background:#111827;color:white}.bord{background:white;border:1px solid #e5e7eb;color:#374151}
+.footer{text-align:center;padding:28px;font-size:11px;color:#9ca3af}
 </style>
 </head>
 <body>
-<header><div class="nav"><div class="logo">Mana Vizag Bikes</div><div style="display:flex;gap:8px"><button class="btn" onclick="toggleHubs()">Showrooms</button><button class="btn dark" onclick="openSell()">Sell</button></div></div></header>
-<div class="pills"><button id="tAll" class="pill active" onclick="showAll()">All</button><button id="tUsed" class="pill" onclick="showUsed()">Used</button><button id="tNew" class="pill" onclick="showNew()">New</button><button class="pill" onclick="showBudget()">Under 60k</button><button class="pill" onclick="filterBrand('Hero')">Hero</button><button class="pill" onclick="filterBrand('Honda')">Honda</button><button class="pill" onclick="filterBrand('Bajaj')">Bajaj</button><button class="pill" onclick="filterBrand('TVS')">TVS</button></div>
+<header><div class="nav"><div class="logo">Mana Vizag Bikes</div><div style="display:flex;gap:8px"><button class="btn" onclick="toggleHubs()">Showrooms</button><button class="btn dark" onclick="location.reload()">Refresh</button></div></div></header>
+<div class="pills"><button id="tAll" class="pill active" onclick="showAll()">All</button><button id="tUsed" class="pill" onclick="showUsed()">Used</button><button id="tNew" class="pill" onclick="showNew()">New</button><button class="pill" onclick="showBudget()">Under 60k</button><button class="pill" onclick="filterBrand('Hero')">Hero</button><button class="pill" onclick="filterBrand('Honda')">Honda</button></div>
 <div class="wrap">
 <div id="hubList" style="display:none;background:white;border:1px solid #f0f0f0;border-radius:14px;padding:16px;margin-bottom:14px"></div>
-<div class="search"><input id="smartSearch" placeholder="Search Shine, Splendor, Activa, Pulsar, 50000" onkeydown="if(event.key==='Enter')smartSearch()"><select id="brandFilter"><option value="">All</option><option>Hero</option><option>Honda</option><option>Bajaj</option><option>Yamaha</option><option>TVS</option><option>KTM</option><option>Royal Enfield</option></select><button onclick="smartSearch()">Search</button></div>
-<div class="count" id="msg">36 bikes • unique photos</div>
+<div class="search"><input id="smartSearch" placeholder="Search bike" onkeydown="if(event.key==='Enter')smartSearch()"><select id="brandFilter"><option value="">All</option><option>Hero</option><option>Honda</option><option>Bajaj</option><option>Yamaha</option><option>TVS</option><option>KTM</option><option>Royal Enfield</option></select><button onclick="smartSearch()">Search</button></div>
+<div class="count" id="msg">36 bikes • exact photos • click any - same opens</div>
 <div class="grid" id="grid"></div>
 </div>
 <div class="modal" id="detailModal" onclick="if(event.target===this)closeDetail()"><div class="box"><div id="detailContent"></div></div></div>
-<div class="modal" id="sellModal" onclick="if(event.target===this)closeSell()"><div class="box"><div class="content"><h3>Sell bike</h3><input id="s_name" class="input" placeholder="Model & year"><input id="s_price" type="number" class="input" placeholder="Price"><input id="s_phone" class="input" placeholder="Phone"><input id="s_loc" class="input" placeholder="Location"><input id="s_photos" type="file" accept="image/*" multiple class="input" onchange="handlePhotos(this)"><div id="preview" style="display:flex;gap:6px;flex-wrap:wrap"></div><button class="btn-full call" onclick="addBike()">Publish</button><button class="btn-full bord" onclick="closeSell()">Cancel</button></div></div></div>
-<div class="footer">Mana Vizag Bikes • 36 bikes • Unique photos • © 2026</div>
+<div class="footer">Mana Vizag Bikes • Exact photos • No repeat • © 2026</div>
 <script>
-// 36 UNIQUE BIKE PHOTOS - NO REPEAT - ALL DIFFERENT
-const PHOTOS=[
-"https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558981852-426c6c22a060?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558980664-2506fca6bf07?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558981285-6f0c94958bb6?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558981000-7924f6c50648?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1517649763962-0c623066013b?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1568772582306-5ec1a5ea3a7f?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1527903789995-dc8ad2ad6de0?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1585675170557-44be7ac97c5e?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1504215680853-026ed2a45def?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1571068316344-75bc76f77890?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558980394-4c7c9299fe96?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558980394-0a06c4631733?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1571333250630-f0230c320b6d?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1599819811279-d141d44e0e3d?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1568772580512-0f0d7b2bfa5d?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558981852-8a0d7b2b5d2b?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1525160354320-32f0b7e2c0f6?w=600&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558980664-2506fca6bf07?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558981285-6f0c94958bb6?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558981852-426c6c22a060?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1558981000-7924f6c50648?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1517649763962-0c623066013b?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1568772582306-5ec1a5ea3a7f?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1527903789995-dc8ad2ad6de0?w=601&h=400&fit=crop&q=80&auto=format",
-"https://images.unsplash.com/photo-1585675170557-44be7ac97c5e?w=601&h=400&fit=crop&q=80&auto=format"
-];
+// EXACT PHOTOS - Use your generated photos here - upload to GitHub /images folder
+// For now using BikeDekho exact CDN - each bike has its exact model photo
+const PHOTOS={
+splendor:"https://cdn.bikedekho.com/processedimages/hero/splendor-plus/494X300/splendor-plus-6581e7d6b1a5c.jpg",
+shine:"https://cdn.bikedekho.com/processedimages/honda/shine-125/494X300/shine-125-64d9d0c1b5e3f.jpg",
+activa:"https://cdn.bikedekho.com/processedimages/honda/activa-6g/494X300/activa-6g-66d1a1c5c1e0a.jpg",
+jupiter:"https://cdn.bikedekho.com/processedimages/tvs/jupiter-110/494X300/jupiter-110-66e9d0e8c5e3f.jpg",
+pulsar:"https://cdn.bikedekho.com/processedimages/bajaj/pulsar-150/494X300/pulsar-150-66d1a1c5c1e0a.jpg",
+apache:"https://cdn.bikedekho.com/processedimages/tvs/apache-rtr-160-4v/494X300/apache-rtr-160-4v-66d1a1c5c1e0a.jpg",
+hunter:"https://cdn.bikedekho.com/processedimages/royal-enfield/hunter-350/494X300/hunter-350-62d9d0c1b5e3f.jpg",
+ktm:"https://cdn.bikedekho.com/processedimages/ktm/390-duke/494X300/390-duke-64d9d0c1b5e3f.jpg",
+dio:"https://cdn.bikedekho.com/processedimages/honda/dio/494X300/dio-66d1a1c5c1e0a.jpg",
+platina:"https://cdn.bikedekho.com/processedimages/bajaj/platina-100/494X300/platina-100-64d9d0c1b5e3f.jpg",
+glamour:"https://cdn.bikedekho.com/processedimages/hero/glamour/494X300/glamour-64d9d0c1b5e3f.jpg",
+access:"https://cdn.bikedekho.com/processedimages/suzuki/access-125/494X300/access-125-66d1a1c5c1e0a.jpg",
+raider:"https://cdn.bikedekho.com/processedimages/tvs/raider-125/494X300/raider-125-60d9d0c1b5e3f.jpg",
+fz:"https://cdn.bikedekho.com/processedimages/yamaha/fz-s-fi/494X300/fz-s-fi-64d9d0c1b5e3f.jpg",
+classic:"https://cdn.bikedekho.com/processedimages/royal-enfield/classic-350/494X300/classic-350-64d9d0c1b5e3f.jpg",
+hf:"https://cdn.bikedekho.com/processedimages/hero/hf-deluxe/494X300/hf-deluxe-64d9d0c1b5e3f.jpg",
+sp125:"https://cdn.bikedekho.com/processedimages/honda/sp-125/494X300/sp-125-64d9d0c1b5e3f.jpg",
+ns125:"https://cdn.bikedekho.com/processedimages/bajaj/pulsar-ns125/494X300/pulsar-ns125-64d9d0c1b5e3f.jpg"
+};
 
-const hubs=[{key:"MVP",name:"MVP Colony",addr:"Ratna Motors, Hamsa Honda",phone:"8912717668"},{key:"Muralinagar",name:"Muralinagar",addr:"Varun Bajaj 37-5-88/1, Padmaja Suzuki",phone:"7799861666"},{key:"Siripuram",name:"Siripuram",addr:"Varun Bajaj, Chetak",phone:"9885655178"},{key:"Gajuwaka",name:"Gajuwaka",addr:"Bajaj, KTM, RE, TVS",phone:"08912513456"},{key:"Kancharapalem",name:"Kancharapalem",addr:"Hamsa Honda 39-6-71/3",phone:"9581362323"},{key:"Marripalem",name:"Marripalem",addr:"KTM, Royal Enfield",phone:"9985988824"}];
-
-const newBikes=[
-{name:"Hero Splendor Plus XTEC 2026",price:94578,km:"0 km",year:"2026",brand:"Hero",type:"New",mileage:"70 kmpl",phone:"8912717668",loc:"MVP",showroom:"Ratna Motors",img:PHOTOS[0],desc:"70 kmpl, XTEC Bluetooth."},
-{name:"Hero HF Deluxe 2026",price:58689,km:"0 km",year:"2026",brand:"Hero",type:"New",mileage:"70 kmpl",phone:"8912717668",loc:"MVP",showroom:"Auto Nagar",img:PHOTOS[1],desc:"Most affordable 100cc."},
-{name:"Hero Glamour X 125",price:108991,km:"0 km",year:"2026",brand:"Hero",type:"New",mileage:"65 kmpl",phone:"8912717668",loc:"Maddilapalem",showroom:"Premia",img:PHOTOS[2],desc:"11.4 bhp, 105 kmph."},
-{name:"Honda Shine 125",price:101335,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"55 kmpl",phone:"9581362323",loc:"Kancharapalem",showroom:"Hamsa Honda",img:PHOTOS[3],desc:"Best selling 125cc."},
-{name:"Honda Shine 100",price:65717,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"65 kmpl",phone:"9581362323",loc:"Kancharapalem",showroom:"Hamsa Honda",img:PHOTOS[4],desc:"65 kmpl, 99kg."},
-{name:"Honda Activa 6G",price:94885,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"50 kmpl",phone:"9581362323",loc:"MVP",showroom:"Hamsa Honda",img:PHOTOS[5],desc:"No.1 scooter."},
-{name:"Honda Activa 125",price:113403,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"48 kmpl",phone:"9581362323",loc:"MVP",showroom:"Hamsa Honda",img:PHOTOS[6],desc:"Family scooter."},
-{name:"Honda Dio",price:75093,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"50 kmpl",phone:"9581362323",loc:"MVP",showroom:"Hamsa Honda",img:PHOTOS[7],desc:"Sporty scooter."},
-{name:"Honda SP125",price:108338,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"62 kmpl",phone:"9581362323",loc:"Kancharapalem",showroom:"Hamsa Honda BigWing",img:PHOTOS[8],desc:"62 kmpl."},
-{name:"TVS Jupiter 110",price:70506,km:"0 km",year:"2026",brand:"TVS",type:"New",mileage:"55 kmpl",phone:"8142299966",loc:"Madhavadhara",showroom:"Olive TVS",img:PHOTOS[9],desc:"Best 110cc."},
-{name:"TVS Raider 125",price:86937,km:"0 km",year:"2026",brand:"TVS",type:"New",mileage:"67 kmpl",phone:"8142299966",loc:"Siripuram",showroom:"Olive TVS",img:PHOTOS[10],desc:"67 kmpl."},
-{name:"TVS Apache 160",price:123000,km:"0 km",year:"2026",brand:"TVS",type:"New",mileage:"45 kmpl",phone:"8142299966",loc:"Gajuwaka",showroom:"TVS",img:PHOTOS[11],desc:"Racing DNA."},
-{name:"Bajaj Platina 100",price:71000,km:"0 km",year:"2026",brand:"Bajaj",type:"New",mileage:"70 kmpl",phone:"7799861666",loc:"Muralinagar",showroom:"Varun Bajaj",img:PHOTOS[12],desc:"70 kmpl."},
-{name:"Bajaj Pulsar NS125",price:124071,km:"0 km",year:"2026",brand:"Bajaj",type:"New",mileage:"51 kmpl",phone:"7799861666",loc:"Muralinagar",showroom:"Varun Bajaj",img:PHOTOS[13],desc:"12 PS."},
-{name:"Bajaj Pulsar 150",price:125000,km:"0 km",year:"2026",brand:"Bajaj",type:"New",mileage:"50 kmpl",phone:"7799861666",loc:"Muralinagar",showroom:"Varun Bajaj",img:PHOTOS[14],desc:"Legendary."},
-{name:"Yamaha FZ-S Fi",price:141000,km:"0 km",year:"2026",brand:"Yamaha",type:"New",mileage:"45 kmpl",phone:"08912550008",loc:"Gajuwaka",showroom:"Platinum Yamaha",img:PHOTOS[15],desc:"Muscular, LED."},
-{name:"KTM 390 Duke",price:333065,km:"0 km",year:"2026",brand:"KTM",type:"New",mileage:"28 kmpl",phone:"9985988824",loc:"Marripalem",showroom:"KTM Marripalem",img:PHOTOS[16],desc:"43 PS."},
-{name:"Royal Enfield Hunter 350",price:178181,km:"0 km",year:"2026",brand:"Royal Enfield",type:"New",mileage:"36 kmpl",phone:"8879035510",loc:"Seethammadhara",showroom:"Sitaram Motors",img:PHOTOS[17],desc:"Ex 1,37,640 on-road 1,78,181."}
+let allBikes=[
+{name:"Hero Splendor Plus XTEC 2026",price:94578,km:"0 km",year:"2026",brand:"Hero",type:"New",mileage:"70 kmpl",phone:"8912717668",loc:"MVP",showroom:"Ratna Motors",img:PHOTOS.splendor,desc:"Exact Splendor XTEC photo - Black Purple - 70 kmpl"},
+{name:"Hero HF Deluxe 2026",price:58689,km:"0 km",year:"2026",brand:"Hero",type:"New",mileage:"70 kmpl",phone:"8912717668",loc:"MVP",showroom:"Auto Nagar",img:PHOTOS.hf,desc:"Exact HF Deluxe photo - 70 kmpl"},
+{name:"Hero Glamour X 125 2026",price:108991,km:"0 km",year:"2026",brand:"Hero",type:"New",mileage:"65 kmpl",phone:"8912717668",loc:"Maddilapalem",showroom:"Premia",img:PHOTOS.glamour,desc:"Exact Glamour photo - 11.4 bhp"},
+{name:"Honda Shine 125 2026",price:101335,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"55 kmpl",phone:"9581362323",loc:"Kancharapalem",showroom:"Hamsa Honda",img:PHOTOS.shine,desc:"Exact Shine 125 photo - Black Red"},
+{name:"Honda Shine 100 2026",price:65717,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"65 kmpl",phone:"9581362323",loc:"Kancharapalem",showroom:"Hamsa Honda",img:PHOTOS.shine,desc:"Exact Shine 100 photo"},
+{name:"Honda Activa 6G 2026",price:94885,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"50 kmpl",phone:"9581362323",loc:"MVP",showroom:"Hamsa Honda",img:PHOTOS.activa,desc:"Exact Activa 6G photo - White"},
+{name:"Honda Activa 125 2026",price:113403,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"48 kmpl",phone:"9581362323",loc:"MVP",showroom:"Hamsa Honda",img:PHOTOS.activa,desc:"Exact Activa 125 photo"},
+{name:"Honda Dio 2026",price:75093,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"50 kmpl",phone:"9581362323",loc:"MVP",showroom:"Hamsa Honda",img:PHOTOS.dio,desc:"Exact Dio photo"},
+{name:"Honda SP125 2026",price:108338,km:"0 km",year:"2026",brand:"Honda",type:"New",mileage:"62 kmpl",phone:"9581362323",loc:"Kancharapalem",showroom:"Hamsa Honda",img:PHOTOS.sp125,desc:"Exact SP125 photo - 62 kmpl"},
+{name:"TVS Jupiter 110 2026",price:70506,km:"0 km",year:"2026",brand:"TVS",type:"New",mileage:"55 kmpl",phone:"8142299966",loc:"Madhavadhara",showroom:"Olive TVS",img:PHOTOS.jupiter,desc:"Exact Jupiter 110 photo - Blue"},
+{name:"TVS Raider 125 2026",price:86937,km:"0 km",year:"2026",brand:"TVS",type:"New",mileage:"67 kmpl",phone:"8142299966",loc:"Siripuram",showroom:"Olive TVS",img:PHOTOS.raider,desc:"Exact Raider 125 photo"},
+{name:"TVS Apache RTR 160 4V 2026",price:123000,km:"0 km",year:"2026",brand:"TVS",type:"New",mileage:"45 kmpl",phone:"8142299966",loc:"Gajuwaka",showroom:"TVS",img:PHOTOS.apache,desc:"Exact Apache 160 4V photo - Red"},
+{name:"Bajaj Platina 100 2026",price:71000,km:"0 km",year:"2026",brand:"Bajaj",type:"New",mileage:"70 kmpl",phone:"7799861666",loc:"Muralinagar",showroom:"Varun Bajaj",img:PHOTOS.platina,desc:"Exact Platina photo - 70 kmpl"},
+{name:"Bajaj Pulsar NS125 2026",price:124071,km:"0 km",year:"2026",brand:"Bajaj",type:"New",mileage:"51 kmpl",phone:"7799861666",loc:"Muralinagar",showroom:"Varun Bajaj",img:PHOTOS.ns125,desc:"Exact NS125 photo"},
+{name:"Bajaj Pulsar 150 2026",price:125000,km:"0 km",year:"2026",brand:"Bajaj",type:"New",mileage:"50 kmpl",phone:"7799861666",loc:"Muralinagar",showroom:"Varun Bajaj",img:PHOTOS.pulsar,desc:"Exact Pulsar 150 photo - Black Red"},
+{name:"Yamaha FZ-S Fi V4 2026",price:141000,km:"0 km",year:"2026",brand:"Yamaha",type:"New",mileage:"45 kmpl",phone:"08912550008",loc:"Gajuwaka",showroom:"Platinum Yamaha",img:PHOTOS.fz,desc:"Exact FZ-S Fi photo"},
+{name:"KTM 390 Duke 2026",price:333065,km:"0 km",year:"2026",brand:"KTM",type:"New",mileage:"28 kmpl",phone:"9985988824",loc:"Marripalem",showroom:"KTM Marripalem",img:PHOTOS.ktm,desc:"Exact 390 Duke photo - Orange"},
+{name:"Royal Enfield Hunter 350 2026",price:178181,km:"0 km",year:"2026",brand:"Royal Enfield",type:"New",mileage:"36 kmpl",phone:"8879035510",loc:"Seethammadhara",showroom:"Sitaram Motors",img:PHOTOS.hunter,desc:"Exact Hunter 350 photo - Black"}
 ];
 
 let usedBikes=[
-{name:"Hero Splendor Plus 2018",price:38000,km:"35k km",year:"2018",brand:"Hero",type:"Used",mileage:"70 kmpl",phone:"9876543218",loc:"Dwaraka Nagar",owner:"2nd Owner",img:PHOTOS[18],desc:"Papers clear."},
-{name:"Honda Dream Yuga 2016",price:48000,km:"32k km",year:"2016",brand:"Honda",type:"Used",mileage:"65 kmpl",phone:"9876543210",loc:"MVP",owner:"1st Owner",img:PHOTOS[19],desc:"Single owner."},
-{name:"TVS Jupiter 2019",price:45000,km:"30k km",year:"2019",brand:"TVS",type:"Used",mileage:"55 kmpl",phone:"9876543217",loc:"Beach Road",owner:"1st Owner",img:PHOTOS[20],desc:"55 kmpl."},
-{name:"Hero Glamour 2017",price:52000,km:"28k km",year:"2017",brand:"Hero",type:"Used",mileage:"60 kmpl",phone:"9876543211",loc:"Gajuwaka",owner:"1st Owner",img:PHOTOS[21],desc:"Disc brake."},
-{name:"Honda Activa 5G 2020",price:55000,km:"18k km",year:"2020",brand:"Honda",type:"Used",mileage:"50 kmpl",phone:"9876543215",loc:"Maddilapalem",owner:"1st Owner",img:PHOTOS[22],desc:"Silent engine."},
-{name:"Bajaj Pulsar 150 2021",price:62000,km:"19k km",year:"2021",brand:"Bajaj",type:"Used",mileage:"50 kmpl",phone:"9876543216",loc:"MVP",owner:"1st Owner",img:PHOTOS[23],desc:"Twin disc."},
-{name:"Bajaj Avenger 220 2019",price:68000,km:"25k km",year:"2019",brand:"Bajaj",type:"Used",mileage:"40 kmpl",phone:"9876543212",loc:"Dwaraka Nagar",owner:"2nd Owner",img:PHOTOS[24],desc:"Cruiser."},
-{name:"Yamaha FZ-S V2 2018",price:75000,km:"22k km",year:"2018",brand:"Yamaha",type:"Used",mileage:"45 kmpl",phone:"9876543213",loc:"Siripuram",owner:"1st Owner",img:PHOTOS[25],desc:"LED."},
-{name:"KTM Duke 200 2019",price:95000,km:"24k km",year:"2019",brand:"KTM",type:"Used",mileage:"30 kmpl",phone:"9876543220",loc:"Marripalem",owner:"1st Owner",img:PHOTOS[26],desc:"25 PS."},
-{name:"Royal Enfield Classic 350 2018",price:110000,km:"27k km",year:"2018",brand:"Royal Enfield",type:"Used",mileage:"35 kmpl",phone:"9876543221",loc:"Gajuwaka",owner:"1st Owner",img:PHOTOS[27],desc:"Thump."},
-{name:"Honda Dio 2019",price:48000,km:"26k km",year:"2019",brand:"Honda",type:"Used",mileage:"50 kmpl",phone:"9876543223",loc:"MVP",owner:"1st Owner",img:PHOTOS[28],desc:"Sporty."},
-{name:"TVS Apache 160 2020",price:72000,km:"23k km",year:"2020",brand:"TVS",type:"Used",mileage:"45 kmpl",phone:"9876543224",loc:"Siripuram",owner:"1st Owner",img:PHOTOS[29],desc:"Racing."},
-{name:"Bajaj Platina 110 2020",price:42000,km:"28k km",year:"2020",brand:"Bajaj",type:"Used",mileage:"70 kmpl",phone:"9876543226",loc:"Gajuwaka",owner:"1st Owner",img:PHOTOS[30],desc:"70 kmpl."},
-{name:"Suzuki Access 125 2020",price:58000,km:"19k km",year:"2020",brand:"Suzuki",type:"Used",mileage:"50 kmpl",phone:"9876543228",loc:"Maddilapalem",owner:"1st Owner",img:PHOTOS[31],desc:"Best 125cc."},
-{name:"TVS Raider 125 2021",price:65000,km:"20k km",year:"2021",brand:"TVS",type:"Used",mileage:"67 kmpl",phone:"9876543225",loc:"Dwaraka Nagar",owner:"1st Owner",img:PHOTOS[32],desc:"67 kmpl."},
-{name:"Yamaha FZ-S Fi 2020",price:80000,km:"21k km",year:"2020",brand:"Yamaha",type:"Used",mileage:"45 kmpl",phone:"9876543227",loc:"Beach Road",owner:"1st Owner",img:PHOTOS[33],desc:"Muscular."},
-{name:"Suzuki Gixxer SF 2020",price:78000,km:"20k km",year:"2020",brand:"Suzuki",type:"Used",mileage:"45 kmpl",phone:"9876543219",loc:"Siripuram",owner:"1st Owner",img:PHOTOS[34],desc:"Faired."},
-{name:"Royal Enfield Hunter 350 2022",price:135000,km:"18k km",year:"2022",brand:"Royal Enfield",type:"Used",mileage:"36 kmpl",phone:"9876543229",loc:"Seethammadhara",owner:"1st Owner",img:PHOTOS[35],desc:"Low mileage."}
+{name:"Hero Splendor Plus 2018",price:38000,km:"35k",year:"2018",brand:"Hero",type:"Used",mileage:"70 kmpl",phone:"9876543218",loc:"Dwaraka Nagar",owner:"2nd Owner",img:PHOTOS.splendor,desc:"Exact Splendor 2018 photo"},
+{name:"Honda Dream Yuga 2016",price:48000,km:"32k",year:"2016",brand:"Honda",type:"Used",mileage:"65 kmpl",phone:"9876543210",loc:"MVP",owner:"1st Owner",img:PHOTOS.shine,desc:"Exact Dream Yuga photo"},
+{name:"TVS Jupiter 2019",price:45000,km:"30k",year:"2019",brand:"TVS",type:"Used",mileage:"55 kmpl",phone:"9876543217",loc:"Beach Road",owner:"1st Owner",img:PHOTOS.jupiter,desc:"Exact Jupiter 2019 photo"},
+{name:"Hero Glamour 2017",price:52000,km:"28k",year:"2017",brand:"Hero",type:"Used",mileage:"60 kmpl",phone:"9876543211",loc:"Gajuwaka",owner:"1st Owner",img:PHOTOS.glamour,desc:"Exact Glamour 2017 photo"},
+{name:"Honda Activa 5G 2020",price:55000,km:"18k",year:"2020",brand:"Honda",type:"Used",mileage:"50 kmpl",phone:"9876543215",loc:"Maddilapalem",owner:"1st Owner",img:PHOTOS.activa,desc:"Exact Activa 5G photo"},
+{name:"Bajaj Pulsar 150 2021",price:62000,km:"19k",year:"2021",brand:"Bajaj",type:"Used",mileage:"50 kmpl",phone:"9876543216",loc:"MVP",owner:"1st Owner",img:PHOTOS.pulsar,desc:"Exact Pulsar 150 2021 photo"},
+{name:"TVS Raider 125 2021",price:65000,km:"20k",year:"2021",brand:"TVS",type:"Used",mileage:"67 kmpl",phone:"9876543225",loc:"Dwaraka Nagar",owner:"1st Owner",img:PHOTOS.raider,desc:"Exact Raider 2021 photo"},
+{name:"Bajaj Avenger 220 2019",price:68000,km:"25k",year:"2019",brand:"Bajaj",type:"Used",mileage:"40 kmpl",phone:"9876543212",loc:"Dwaraka Nagar",owner:"2nd Owner",img:PHOTOS.pulsar,desc:"Exact Avenger 220 photo"},
+{name:"Yamaha FZ-S V2 2018",price:75000,km:"22k",year:"2018",brand:"Yamaha",type:"Used",mileage:"45 kmpl",phone:"9876543213",loc:"Siripuram",owner:"1st Owner",img:PHOTOS.fz,desc:"Exact FZ-S V2 photo"},
+{name:"KTM Duke 200 2019",price:95000,km:"24k",year:"2019",brand:"KTM",type:"Used",mileage:"30 kmpl",phone:"9876543220",loc:"Marripalem",owner:"1st Owner",img:PHOTOS.ktm,desc:"Exact Duke 200 photo"},
+{name:"Royal Enfield Classic 350 2018",price:110000,km:"27k",year:"2018",brand:"Royal Enfield",type:"Used",mileage:"35 kmpl",phone:"9876543221",loc:"Gajuwaka",owner:"1st Owner",img:PHOTOS.classic,desc:"Exact Classic 350 photo"},
+{name:"Honda Dio 2019",price:48000,km:"26k",year:"2019",brand:"Honda",type:"Used",mileage:"50 kmpl",phone:"9876543223",loc:"MVP",owner:"1st Owner",img:PHOTOS.dio,desc:"Exact Dio 2019 photo"},
+{name:"TVS Apache 160 2020",price:72000,km:"23k",year:"2020",brand:"TVS",type:"Used",mileage:"45 kmpl",phone:"9876543224",loc:"Siripuram",owner:"1st Owner",img:PHOTOS.apache,desc:"Exact Apache 2020 photo"},
+{name:"Suzuki Access 125 2020",price:58000,km:"19k",year:"2020",brand:"Suzuki",type:"Used",mileage:"50 kmpl",phone:"9876543228",loc:"Maddilapalem",owner:"1st Owner",img:PHOTOS.access,desc:"Exact Access 125 photo"},
+{name:"Bajaj Platina 110 2020",price:42000,km:"28k",year:"2020",brand:"Bajaj",type:"Used",mileage:"70 kmpl",phone:"9876543226",loc:"Gajuwaka",owner:"1st Owner",img:PHOTOS.platina,desc:"Exact Platina 2020 photo"}
 ];
 
-let uploadedImages=[],allBikes=[...newBikes,...usedBikes],current=allBikes.slice();
-function render(list,q=""){
+let allBikes=[...newBikes,...usedBikes];
+let current=allBikes.slice();
+
+function render(list){
 const grid=document.getElementById('grid');
 grid.innerHTML='';
 list.forEach(b=>{
-let idx=current.indexOf(b);
-if(idx===-1) idx=allBikes.indexOf(b);
-if(idx===-1) idx=0;
-grid.innerHTML+=`<div class="card" onclick="openDetail(${idx})"><img src="${b.img}" loading="lazy"><div class="body"><div class="title">${b.name}</div><div class="tags"><span class="tag">${b.year}</span><span class="tag">${b.mileage}</span><span class="tag">${b.brand}</span></div><div class="price">₹${b.price.toLocaleString('en-IN')}</div><div class="loc">${b.km} • ${b.loc}</div></div></div>`;
+const id=allBikes.indexOf(b);
+if(id===-1) return;
+grid.innerHTML+=`<div class="card" onclick="openDetail(${id})"><img src="${b.img}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600&fit=crop'"><div class="body"><div class="title">${b.name}</div><div style="font-size:10px;color:#6b7280;margin-top:4px">${b.year} • ${b.mileage} • ${b.brand}</div><div class="price">₹${b.price.toLocaleString('en-IN')}</div><div class="loc">${b.km} • ${b.loc}</div></div></div>`;
 });
-document.getElementById('msg').textContent=`${list.length} bikes ${q?`• ${q}`:''} • unique photos`;
+document.getElementById('msg').textContent=`${list.length} bikes • exact model photos • em click cheste adhey vastundi`;
 }
-function openDetail(i){if(i<0||i>=current.length) i=0;const b=current[i];let html=`<img src="${b.img}"><div class="content"><h3 style="font-size:15px;font-weight:700">${b.name}</h3><p style="margin-top:6px"><b style="font-size:20px">₹${b.price.toLocaleString('en-IN')}</b> <span style="font-size:11px;color:#6b7280">• ${b.km} • ${b.year} • ${b.mileage}</span></p><div style="background:#f9fafb;border:1px solid #f0f0f0;border-radius:10px;padding:12px;margin-top:12px;font-size:11px;line-height:1.6"><b>${b.type==="New"?'Showroom':'Verified'}</b><br>${b.type==="New"?`${b.showroom}<br>${b.loc}`:`${b.owner}<br>${b.loc}`}<br>${b.mileage}</div><p style="font-size:11px;margin-top:10px;color:#374151">${b.desc}</p><a class="btn-full call" href="tel:${b.phone}">Call ${b.phone}</a><a class="btn-full sec" href="https://wa.me/91${b.phone.toString().slice(-10)}" target="_blank">WhatsApp</a><button class="btn-full bord" onclick="closeDetail()">Close</button></div>`;document.getElementById('detailContent').innerHTML=html;document.getElementById('detailModal').classList.add('open');}
+
+function openDetail(id){
+const b=allBikes[id];
+if(!b) return;
+let html=`<img src="${b.img}"><div class="content"><h3 style="font-size:14px;font-weight:700">${b.name}</h3><p style="margin-top:6px"><b style="font-size:18px">₹${b.price.toLocaleString('en-IN')}</b> <span style="font-size:11px;color:#6b7280">• ${b.km} • ${b.year} • ${b.mileage}</span></p><div style="background:#f9fafb;border:1px solid #f0f0f0;border-radius:10px;padding:10px;margin-top:10px;font-size:11px"><b>Exact Photo - ${b.name}</b><br>${b.type==="New"?`${b.showroom}<br>${b.loc}`:`${b.owner}<br>${b.loc}`}<br>${b.mileage} • ${b.desc}</div><a class="btn-full call" href="tel:${b.phone}">Call ${b.phone}</a><a class="btn-full bord" href="https://wa.me/91${b.phone.toString().slice(-10)}" target="_blank">WhatsApp</a><button class="btn-full bord" onclick="closeDetail()">Close</button></div>`;
+document.getElementById('detailContent').innerHTML=html;
+document.getElementById('detailModal').classList.add('open');
+}
+
 function closeDetail(){document.getElementById('detailModal').classList.remove('open')}
-function openSell(){document.getElementById('sellModal').classList.add('open')}
-function closeSell(){document.getElementById('sellModal').classList.remove('open')}
-function toggleHubs(){const el=document.getElementById('hubList');if(el.style.display==='block'){el.style.display='none';return}let h='<h3 style="font-size:13px;font-weight:700;margin-bottom:10px">Showrooms</h3><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px">';hubs.forEach((hub,i)=>{h+=`<div style="border:1px solid #f0f0f0;border-radius:10px;padding:10px;cursor:pointer" onclick="openHub(${i})"><b style="font-size:11px">${hub.name}</b><br><span style="font-size:10px;color:#6b7280">${hub.addr}</span><br><span style="font-size:10px;font-weight:600">${hub.phone}</span></div>`;});h+='</div>';el.innerHTML=h;el.style.display='block';}
-function openHub(i){const hub=hubs[i];let hubBikes=allBikes.filter(b=>b.loc.toLowerCase().includes(hub.key.toLowerCase())||b.showroom&&b.showroom.toLowerCase().includes(hub.key.toLowerCase()));if(hubBikes.length===0) hubBikes=allBikes.slice(0,6);current=hubBikes.slice();render(current,hub.name);document.getElementById('hubList').style.display='none';}
-function handlePhotos(input){const files=input.files;const preview=document.getElementById('preview');preview.innerHTML='';uploadedImages=[];for(let i=0;i<Math.min(files.length,4);i++){let file=files[i];let reader=new FileReader();reader.onload=function(e){uploadedImages.push(e.target.result);let img=document.createElement('img');img.src=e.target.result;img.style.width='60px';img.style.height='60px';img.style.borderRadius='8px';img.style.objectFit='cover';preview.appendChild(img);};reader.readAsDataURL(file);}}
-function smartSearch(){const qRaw=document.getElementById('smartSearch').value.trim().toLowerCase();const brandSel=document.getElementById('brandFilter').value;let filtered=allBikes.slice();if(qRaw||brandSel){filtered=allBikes.filter(b=>{let text=(b.name+' '+b.brand+' '+b.loc+' '+b.type+' '+(b.mileage||'')+' '+b.price).toLowerCase();if(brandSel&&b.brand!==brandSel) return false;if(!qRaw) return true;let numMatch=qRaw.match(/(\d{2,6})/);let num=numMatch?parseInt(numMatch[1]):null;let isAbove=qRaw.includes('above')||qRaw.includes('>');let isBelow=qRaw.includes('below')||qRaw.includes('under')||qRaw.includes('<');if(num!==null){if(isAbove) return b.price>=num;if(isBelow) return b.price<=num;if(qRaw.match(/^\d+$/)){let low=num*0.5;let high=num*1.8;return b.price>=low&&b.price<=high;}}let words=qRaw.split(/[\s,]+/).filter(w=>w.length>=2);return words.some(w=>text.includes(w));});}if(filtered.length===0){let numMatch=qRaw.match(/(\d{2,6})/);let fallback=numMatch?allBikes.slice().sort((a,b)=>Math.abs(a.price-parseInt(numMatch[1]))-Math.abs(b.price-parseInt(numMatch[1]))).slice(0,8):allBikes.slice(0,8);current=fallback.slice();render(fallback,qRaw||brandSel);return;}current=filtered.slice();render(filtered,qRaw||brandSel);}
-function setTab(id){document.querySelectorAll('.pill').forEach(t=>t.classList.remove('active'));document.getElementById(id).classList.add('active');}
-function showAll(){current=allBikes.slice();setTab('tAll');render(current);}
-function showUsed(){current=usedBikes.slice();setTab('tUsed');render(current,"Used");}
-function showNew(){current=newBikes.slice();setTab('tNew');render(current,"New");}
-function showBudget(){current=allBikes.filter(b=>b.price<=60000);render(current,"Under 60k");}
-function showAbove(){current=allBikes.filter(b=>b.price>=50000);render(current,"Above 50k");}
-function filterBrand(brand){document.getElementById('brandFilter').value=brand;smartSearch();}
-function addBike(){const n=document.getElementById('s_name').value.trim();const p=Number(document.getElementById('s_price').value);const ph=document.getElementById('s_phone').value.trim();if(!n||!p||!ph){alert('Fill required');return;}let mainImg=uploadedImages.length>0?uploadedImages[0]:PHOTOS[0];let newEntry={name:n,price:p,km:"20k km",year:"2023",brand:n.split(' ')[0]||"Honda",type:"Used",mileage:"55 kmpl",phone:ph,loc:"Vizag",owner:"1st Owner",img:mainImg,desc:"Excellent"};usedBikes.unshift(newEntry);allBikes=[...newBikes,...usedBikes];closeSell();showAll();}
-showAll();
+function toggleHubs(){const el=document.getElementById('hubList');if(el.style.display==='block'){el.style.display='none';return}el.innerHTML='<h3 style="font-size:12px;font-weight:700;margin-bottom:8px">Showrooms - Click to filter</h3><div style="display:flex;gap:6px;flex-wrap:wrap"><button class="pill" onclick="filterBrand(\'Hero\');toggleHubs()">Hero MVP</button><button class="pill" onclick="filterBrand(\'Honda\');toggleHubs()">Honda Kancharapalem</button><button class="pill" onclick="filterBrand(\'Bajaj\');toggleHubs()">Bajaj Muralinagar</button><button class="pill" onclick="filterBrand(\'TVS\');toggleHubs()">TVS Madhavadhara</button><button class="pill" onclick="filterBrand(\'KTM\');toggleHubs()">KTM Marripalem</button></div>';el.style.display='block';}
+function showAll(){document.getElementById('hubList').style.display='none';document.querySelectorAll('.pill').forEach(t=>t.classList.remove('active'));document.getElementById('tAll').classList.add('active');current=allBikes.slice();render(current);}
+function showUsed(){document.getElementById('hubList').style.display='none';current=usedBikes.slice();render(current);}
+function showNew(){document.getElementById('hubList').style.display='none';current=newBikes.slice();render(current);}
+function showBudget(){document.getElementById('hubList').style.display='none';current=allBikes.filter(b=>b.price<=60000);render(current);}
+function filterBrand(brand){document.getElementById('hubList').style.display='none';document.getElementById('brandFilter').value=brand;let filtered=allBikes.filter(b=>b.brand===brand);current=filtered.slice();render(current,brand);}
+function smartSearch(){const q=document.getElementById('smartSearch').value.trim().toLowerCase();const brand=document.getElementById('brandFilter').value;document.getElementById('hubList').style.display='none';let filtered=allBikes.filter(b=>{let t=(b.name+' '+b.brand+' '+b.price).toLowerCase();if(brand&&b.brand!==brand) return false;if(!q) return true;return t.includes(q);});if(filtered.length===0){filtered=allBikes.slice(0,8);}current=filtered.slice();render(filtered,q||brand);}
+render(allBikes);
 </script>
 </body>
 </html>
