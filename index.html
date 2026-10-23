@@ -1,1 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vizag Bike Bazaar - Sell & Buy | Priyanka Maddu</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background: linear-gradient(135deg,#667eea 0%,#764ba2 25%,#f093fb 50%,#f5576c 75%,#4facfe 100%);background-size:400% 400%;animation:gradientShift 15s ease infinite;min-height:100vh}
+@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+header{background:rgba(15,23,42,0.9);backdrop-filter:blur(20px);color:white;padding:25px;text-align:center;position:sticky;top:0;z-index:100}
+header h1{font-size:32px}
+.top-actions{margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{padding:10px 18px;border:none;border-radius:25px;cursor:pointer;font-weight:600;transition:.3s}
+.btn-sell{background:linear-gradient(90deg,#f59e0b,#ef4444);color:white;box-shadow:0 4px 15px rgba(239,68,68,.4)}
+.btn-showroom{background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.3)}
+.tabs{display:flex;gap:10px;justify-content:center;margin:18px}
+.tabs button{padding:10px 20px;border:none;border-radius:25px;cursor:pointer;font-weight:600;background:rgba(255,255,255,.9)}
+.tabs button.active{background:linear-gradient(90deg,#2563eb,#7c3aed);color:white}
+.container{max-width:1250px;margin:auto;padding:15px}
+.search{background:rgba(255,255,255,.92);backdrop-filter:blur(16px);padding:16px;border-radius:14px;display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.search input,.search select{padding:12px;border-radius:8px;border:1px solid #e2e8f0;flex:1}
+.search button{padding:12px;border-radius:8px;border:none;background:linear-gradient(90deg,#2563eb,#7c3aed);color:white;font-weight:600;cursor:pointer;flex:1}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.card{background:rgba(255,255,255,.96);border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,.12);transition:.3s}
+.card:hover{transform:translateY(-6px)}
+.card img{width:100%;height:170px;object-fit:cover}
+.card-body{padding:14px}
+.price{color:#059669;font-weight:700;font-size:18px}
+.old{color:#94a3b8;text-decoration:line-through;font-size:13px;margin-left:5px}
+.badge{font-size:11px;background:#e0f2fe;color:#0369a1;padding:3px 9px;border-radius:20px;margin-right:4px}
+.badge.new{background:#dcfce7;color:#166534}
+.contact-btn{width:100%;margin-top:10px;padding:10px;border:none;border-radius:8px;background:linear-gradient(90deg,#0f172a,#334155);color:white;font-weight:600;cursor:pointer}
+.showroom-list{background:rgba(255,255,255,.9);border-radius:14px;padding:15px;margin-bottom:16px;display:none}
+.showroom-list div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:14px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:center;justify-content:center;padding:15px}
+.modal-box{background:white;border-radius:16px;padding:20px;max-width:420px;width:100%;max-height:90vh;overflow:auto}
+.modal-box input,.modal-box select,.modal-box textarea{width:100%;padding:11px;margin:6px 0;border-radius:8px;border:1px solid #ddd}
+.footer{background:rgba(15,23,42,.9);color:#cbd5e1;text-align:center;padding:28px;margin-top:30px}
+.footer b{color:white}
+#msg{color:white;font-weight:700;margin-bottom:12px;text-shadow:0 2px 10px rgba(0,0,0,.3)}
+</style>
+</head>
+<body>
+<header>
+<h1>🏍️ Vizag Bike Bazaar</h1>
+<p>OLX Style - Buy, Sell & Showroom Prices | Vizag</p>
+<div class="top-actions">
+<button class="btn btn-sell" onclick="openSell()">+ Sell Your Bike</button>
+<button class="btn btn-showroom" onclick="toggleShowrooms()">🏪 Showrooms (8)</button>
+</div>
+</header>
 
+<div class="tabs">
+<button class="active" id="b-used" onclick="showUsed()">Used Bikes</button>
+<button id="b-new" onclick="showNew()">New 2026 Price</button>
+<button id="b-all" onclick="showAllBikes()">All + User Added</button>
+</div>
+
+<div class="container">
+<div class="showroom-list" id="showroomList">
+<h3 style="margin-bottom:10px">🏪 Vizag Top Showrooms - OLX Available</h3>
+<div><b>Bajaj Showroom - MVP</b><span>📞 0891-255XXXX</span></div>
+<div><b>Honda Showroom - Dwaraka Nagar</b><span>📞 0891-270XXXX</span></div>
+<div><b>Yamaha Showroom - Siripuram</b><span>📞 0891-256XXXX</span></div>
+<div><b>Hero Showroom - Gajuwaka</b><span>📞 0891-251XXXX</span></div>
+<div><b>Royal Enfield - Beach Road</b><span>📞 0891-259XXXX</span></div>
+<div><b>TVS Showroom - Akkayapalem</b><span>📞 0891-273XXXX</span></div>
+<div><b>Suzuki - Maddilapalem</b><span>📞 0891-274XXXX</span></div>
+<div><b>OLX Verified Hub - Vizag</b><span>📞 1800-XXX-XXXX</span></div>
+</div>
+
+<div class="search">
+<input id="budget" type="number" placeholder="Budget - Ex: 60000">
+<select id="brandFilter"><option value="">All Brands</option><option>Honda</option><option>Bajaj</option><option>Yamaha</option><option>Hero</option><option>Royal Enfield</option><option>TVS</option><option>Activa</option></select>
+<button onclick="filterBikes()">Search</button>
+<button onclick="resetFilter()" style="background:#0f172a">Reset</button>
+</div>
+<div id="msg"></div>
+<div class="grid" id="bikeGrid"></div>
+</div>
+
+<!-- Sell Modal -->
+<div class="modal" id="sellModal">
+<div class="modal-box">
+<h3>+ Sell Your Bike - Vizag</h3>
+<p style="font-size:12px;color:#64748b">Nee bike details pettu - andhariki kanipistundi!</p>
+<input id="s_name" placeholder="Bike Name - Ex: Pulsar 150 2019">
+<input id="s_price" type="number" placeholder="Price - Ex: 65000">
+<input id="s_km" placeholder="KM - Ex: 22k km">
+<input id="s_year" placeholder="Year - Ex: 2019">
+<input id="s_phone" placeholder="Your Phone Number">
+<input id="s_location" placeholder="Location - Ex: Gajuwaka, Vizag">
+<input id="s_img" placeholder="Photo URL (or leave blank for default)">
+<textarea id="s_desc" placeholder="About bike..."></textarea>
+<button onclick="addBike()" style="width:100%;padding:12px;background:linear-gradient(90deg,#f59e0b,#ef4444);color:white;border:none;border-radius:8px;font-weight:700;margin-top:8px">Publish Bike</button>
+<button onclick="closeSell()" style="width:100%;padding:10px;background:#e2e8f0;border:none;border-radius:8px;margin-top:8px">Cancel</button>
+</div>
+</div>
+
+<!-- Contact Modal -->
+<div class="modal" id="contactModal">
+<div class="modal-box" id="contactBox"></div>
+</div>
+
+<div class="footer">
+<b>© 2026 Vizag Bike Bazaar - OLX Edition</b><br>
+Developed with ❤️ by <b style="color:#a5b4fc">Priyanka Maddu</b> | Vizag, AP<br>
+8 Showrooms | User Sell | Contact Seller | New + Used Prices<br>
+<span style="font-size:11px">All OLX style bikes available | Seller contact direct</span>
+</div>
+
+<script>
+let usedBikes=[
+{name:"Honda Dream Yuga 2016",price:48000,km:"32k km",year:"2016",brand:"Honda",phone:"98765 43210",location:"MVP, Vizag",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/109691/dream-yuga-right-side-view-2.png"},
+{name:"Hero Glamour 2017",price:52000,km:"28k km",year:"2017",brand:"Hero",phone:"98765 43211",location:"Gajuwaka",img:"https://imgd.aeplcdn.com/600x400/n/bw/models/colors/hero-select-model-glamour-black-purple-1615903277612.png"},
+{name:"Bajaj Avenger Street 220",price:68000,km:"25k km",year:"2019",brand:"Bajaj",phone:"98765 43212",location:"Dwaraka Nagar",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/163526/avenger-street-220-right-side-view-2.png"},
+{name:"Yamaha FZ 2018",price:75000,km:"22k km",year:"2018",brand:"Yamaha",phone:"98765 43213",location:"Siripuram",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/yamaha-fz-fis-version-20-right-side-view-9.png"},
+{name:"Royal Enfield Classic 350",price:95000,km:"30k km",year:"2017",brand:"Royal Enfield",phone:"98765 43214",location:"Beach Road",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/36155/classic-350-right-side-view-2.png"},
+{name:"Activa 5G 2020",price:55000,km:"18k km",year:"2020",brand:"Activa",phone:"98765 43215",location:"Maddilapalem",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/honda-activa-5g-right-side-view-5.png"},
+{name:"Honda Shine 2019",price:58000,km:"24k km",year:"2019",brand:"Honda",phone:"98765 43216",location:"Akkayapalem",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/honda-shine-right-side-view-5.png"},
+{name:"Bajaj Pulsar 150 2018",price:62000,km:"27k km",year:"2018",brand:"Bajaj",phone:"98765 43217",location:"MVP",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/yamaha-fz-fis-version-20-right-side-view-9.png"},
+{name:"TVS Jupiter 2019",price:50000,km:"20k km",year:"2019",brand:"TVS",phone:"98765 43218",location:"Gajuwaka",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/tvs-jupiter-right-side-view-11.png"},
+{name:"Hero Splendor Plus 2020",price:53000,km:"15k km",year:"2020",brand:"Hero",phone:"98765 43219",location:"Dwaraka Nagar",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/hero-splendor-plus-right-side-view-2.png"},
+{name:"Yamaha Ray ZR 2021",price:60000,km:"12k km",year:"2021",brand:"Yamaha",phone:"98765 43220",location:"Siripuram",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/yamaha-ray-zr-125-right-side-view-7.png"},
+{name:"Bajaj Platina 110 2020",price:45000,km:"19k km",year:"2020",brand:"Bajaj",phone:"98765 43221",location:"Maddilapalem",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/bajaj-platina-110-right-side-view-6.png"}
+];
+const newBikes=[
+{name:"Honda Shine 125 2026",price:82722,oldPrice:96000,km:"0 km NEW",year:"2026 NEW",brand:"Honda",phone:"Showroom",location:"Honda - Dwaraka Nagar",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/honda-shine-right-side-view-5.png",type:"new"},
+{name:"Honda Activa 6G 2026",price:76083,oldPrice:91082,km:"0 km NEW",year:"2026 NEW",brand:"Activa",phone:"Showroom",location:"Honda - MVP",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/honda-activa-5g-right-side-view-5.png",type:"new"},
+{name:"Bajaj Pulsar 150",price:72990,oldPrice:115000,km:"0 km NEW",year:"2026 NEW",brand:"Bajaj",phone:"Showroom",location:"Bajaj - MVP",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/yamaha-fz-fis-version-20-right-side-view-9.png",type:"new"},
+{name:"Bajaj Pulsar 125",price:92990,oldPrice:105000,km:"0 km NEW",year:"2026 NEW",brand:"Bajaj",phone:"Showroom",location:"Bajaj - Gajuwaka",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/163526/avenger-street-220-right-side-view-2.png",type:"new"},
+{name:"Honda SP 125",price:89748,oldPrice:97335,km:"0 km NEW",year:"2026 NEW",brand:"Honda",phone:"Showroom",location:"Honda - Siripuram",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/honda-shine-right-side-view-5.png",type:"new"},
+{name:"Bajaj Platina 110",price:72428,oldPrice:85000,km:"0 km NEW",year:"2026 NEW",brand:"Bajaj",phone:"Showroom",location:"Bajaj - Akkayapalem",img:"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/bajaj-platina-110-right-side-view-6.png",type:"new"}
+];
+let userBikes=JSON.parse(localStorage.getItem("vizag_user_bikes")||"[]");
+let current=[...usedBikes,...userBikes];
+const grid=document.getElementById("bikeGrid");
+const msg=document.getElementById("msg");
+
+function render(list){
+grid.innerHTML="";
+list.forEach((b,i)=>{
+let priceHtml=`<span class="price">₹${b.price.toLocaleString()}</span>`;
+if(b.oldPrice){priceHtml+=`<span class="old">₹${b.oldPrice.toLocaleString()}</span>`}
+let badge=b.type=="new"?"badge new":"badge";
+grid.innerHTML+=`<div class="card"><img src="${b.img}"><div class="card-body"><h3>${b.name}</h3><p><span class="${badge}">${b.year}</span> <span class="badge">${b.km}</span></p><p style="margin-top:6px">${priceHtml}</p><p style="font-size:12px;color:#64748b">📍 ${b.location}</p><button class="contact-btn" onclick="contactSeller(${i})">📞 Contact Seller</button></div></div>`;
+});
+msg.innerText=`${list.length} Bikes Found - Vizag`;
+}
+
+function filterBikes(){
+let budget=Number(document.getElementById("budget").value);
+let brand=document.getElementById("brandFilter").value;
+let filtered=current.filter(b=>{
+let ok=true;
+if(budget) ok=ok && b.price<=budget;
+if(brand) ok=ok && b.brand.toLowerCase().includes(brand.toLowerCase());
+return ok;
+});
+if(filtered.length==0){msg.innerText="No bikes";grid.innerHTML=`<p style="background:white;padding:15px;border-radius:12px">No bikes found - try higher budget</p>`;return}
+render(filtered);
+}
+function resetFilter(){document.getElementById("budget").value="";document.getElementById("brandFilter").value="";render(current);}
+function showUsed(){current=[...usedBikes,...userBikes];setActive("b-used");render(current);}
+function showNew(){current=newBikes;setActive("b-new");render(current);}
+function showAllBikes(){current=[...usedBikes,...newBikes,...userBikes];setActive("b-all");render(current);}
+function setActive(id){document.querySelectorAll(".tabs button").forEach(b=>b.classList.remove("active"));document.getElementById(id).classList.add("active");}
+function toggleShowrooms(){let el=document.getElementById("showroomList");el.style.display=el.style.display=="block"?"none":"block";}
+function openSell(){document.getElementById("sellModal").style.display="flex";}
+function closeSell(){document.getElementById("sellModal").style.display="none";}
+function addBike(){
+let name=document.getElementById("s_name").value;
+let price=Number(document.getElementById("s_price").value);
+let km=document.getElementById("s_km").value;
+let year=document.getElementById("s_year").value;
+let phone=document.getElementById("s_phone").value;
+let location=document.getElementById("s_location").value;
+let img=document.getElementById("s_img").value||"https://imgd.aeplcdn.com/1280x720/n/cw/ec/1/versions/yamaha-fz-fis-version-20-right-side-view-9.png";
+if(!name||!price||!phone){alert("Name, Price, Phone required ra!");return}
+let nb={name,price,km,year,brand:name.split(" ")[0],phone,location,img};
+userBikes.unshift(nb);
+localStorage.setItem("vizag_user_bikes",JSON.stringify(userBikes));
+closeSell();
+showUsed();
+alert("Bike Published! Andhariki kanipistundi!");
+}
+function contactSeller(idx){
+let b=current[idx];
+document.getElementById("contactBox").innerHTML=`
+<h3>📞 Seller Details</h3>
+<p style="margin-top:10px"><b>Bike:</b> ${b.name}</p>
+<p><b>Price:</b> ₹${b.price.toLocaleString()}</p>
+<p><b>Location:</b> ${b.location}</p>
+<p><b>KM:</b> ${b.km} | <b>Year:</b> ${b.year}</p>
+<hr style="margin:10px 0">
+<p style="background:#dcfce7;padding:12px;border-radius:8px"><b>Phone:</b> ${b.phone}<br><b>Call / WhatsApp:</b> Available</p>
+<p style="font-size:12px;color:#64748b;margin-top:8px">OLX la direct seller ki call cheyochu!</p>
+<button onclick="closeContact()" style="width:100%;margin-top:12px;padding:11px;background:#0f172a;color:white;border:none;border-radius:8px">Close</button>
+`;
+document.getElementById("contactModal").style.display="flex";
+}
+function closeContact(){document.getElementById("contactModal").style.display="none";}
+render(current);
+</script>
+</body>
+</html>
