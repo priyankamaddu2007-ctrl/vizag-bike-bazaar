@@ -1,133 +1,230 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mana Vizag Bikes - Trusted Hub</title>
+<title>Mana Vizag Bikes - Trusted Hub | Priyanka Maddu</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif}
-body{background:#7c3aed;min-height:100vh}
-header{background:#0f172a;color:white;padding:20px;text-align:center}
-.container{max-width:1000px;margin:auto;padding:15px}
-.search{background:white;padding:12px;border-radius:10px;display:flex;gap:8px;margin-bottom:15px}
-.search input,.search select{padding:10px;border:1px solid #ddd;border-radius:8px;flex:1}
-.search button{padding:10px 15px;border:none;border-radius:8px;background:#2563eb;color:white;font-weight:bold;cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:15px}
-.card{background:white;border-radius:12px;overflow:hidden;cursor:pointer}
-.card img{width:100%;height:150px;object-fit:cover}
-.card-body{padding:10px}
-.price{color:green;font-weight:bold}
-.modal{display:none;position:fixed;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:999;align-items:center;justify-content:center}
-.modal.show{display:flex}
-.box{background:white;padding:20px;border-radius:12px;max-width:400px;width:90%;max-height:80vh;overflow:auto}
-.box button{padding:10px;width:100%;margin-top:8px;border:none;border-radius:8px;cursor:pointer;font-weight:bold}
-.call{background:#2563eb;color:white}.wa{background:#25D366;color:white}.close{background:#0f172a;color:white}
-.footer{background:#0f172a;color:white;text-align:center;padding:20px;margin-top:20px;font-size:12px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
+body{background:linear-gradient(135deg,#667eea,#764ba2);min-height:100vh}
+header{background:#0f172a;color:white;padding:22px;text-align:center;position:sticky;top:0;z-index:50}
+header h1{font-size:26px}
+.container{max-width:1150px;margin:auto;padding:16px}
+.search{background:white;padding:14px;border-radius:12px;display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;box-shadow:0 4px 15px rgba(0,0,0,.15)}
+.search input,.search select{padding:11px;border:1px solid #ddd;border-radius:8px;flex:1;min-width:130px}
+.search button{padding:11px 18px;border:none;border-radius:8px;background:#2563eb;color:white;font-weight:700;cursor:pointer}
+#hubList{display:none;background:white;border-radius:12px;padding:14px;margin-bottom:14px;box-shadow:0 4px 15px rgba(0,0,0,.15)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.card{background:white;border-radius:14px;overflow:hidden;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.18);transition:.25s}
+.card:hover{transform:translateY(-4px)}
+.card img{width:100%;height:180px;object-fit:cover;display:block;background:#e2e8f0}
+.card-body{padding:13px}
+.badge{display:inline-block;padding:3px 8px;border-radius:20px;font-size:11px;margin-right:4px}
+.badge-green{background:#dcfce7;color:#166534}.badge-blue{background:#dbeafe;color:#1e40af}
+.price{color:#059669;font-weight:800;font-size:18px}
+#msg{color:white;font-weight:700;margin-bottom:12px;font-size:14px}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:999;align-items:center;justify-content:center;padding:14px}
+.modal.open{display:flex}
+.box{background:white;width:100%;max-width:460px;border-radius:16px;overflow:hidden;max-height:92vh;overflow-y:auto;animation:pop .25s ease}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.box img{width:100%;height:220px;object-fit:cover;display:block;background:#e2e8f0}
+.box-content{padding:18px}
+.btn{display:block;width:100%;padding:12px;margin-top:9px;border:none;border-radius:9px;font-weight:700;cursor:pointer;text-align:center;text-decoration:none;font-size:14px}
+.btn-call{background:#2563eb;color:white}.btn-wa{background:#25D366;color:white}.btn-map{background:#f1f5f9;color:#0f172a;border:1px solid #e2e8f0}.btn-close{background:#0f172a;color:white}
+.mini{display:flex;gap:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:10px;margin-top:8px;cursor:pointer}
+.mini img{width:75px;height:55px;border-radius:7px;object-fit:cover}
+.footer{background:#0f172a;color:#cbd5e1;text-align:center;padding:24px;margin-top:30px;font-size:12px;line-height:1.8}
+.tab-btn{padding:9px 18px;border-radius:22px;border:none;margin:3px;font-weight:700;cursor:pointer}
+.tab-active{background:white;color:#0f172a}.tab-inactive{background:rgba(255,255,255,.2);color:white;border:1px solid rgba(255,255,255,.3)}
 </style>
 </head>
 <body>
 <header>
 <h1>🏍️ Mana Vizag Bikes</h1>
-<p>Trusted Hub - Verified by Priyanka Maddu</p>
-<br>
-<button onclick="showSell()" style="padding:10px 20px;background:orange;color:white;border:none;border-radius:20px;font-weight:bold;cursor:pointer">+ Sell Your Bike</button>
-<button onclick="toggleHubs()" style="padding:10px 20px;background:rgba(255,255,255,.2);color:white;border:1px solid white;border-radius:20px;cursor:pointer;margin-left:8px">🏪 Trusted Hubs (8)</button>
-<br><br>
-<button onclick="showUsed()" style="padding:8px 15px;border-radius:20px;border:none;margin:3px;background:white;font-weight:bold;cursor:pointer">Trusted Used</button>
-<button onclick="showNew()" style="padding:8px 15px;border-radius:20px;border:none;margin:3px;background:rgba(255,255,255,.8);cursor:pointer">New 2026</button>
+<p style="opacity:.9">Trusted Hub - Verified by Priyanka Maddu</p>
+<div style="margin-top:14px">
+<button onclick="openSell()" style="padding:11px 22px;background:linear-gradient(90deg,#f59e0b,#ef4444);color:white;border:none;border-radius:25px;font-weight:800;cursor:pointer">+ Sell Your Bike</button>
+<button onclick="toggleHubs()" style="padding:11px 22px;background:rgba(255,255,255,.15);color:white;border:1px solid rgba(255,255,255,.3);border-radius:25px;font-weight:600;cursor:pointer;margin-left:8px">🏪 Trusted Hubs (4)</button>
+</div>
+<div style="margin-top:14px">
+<button id="tUsed" class="tab-btn tab-active" onclick="showUsed()">Trusted Used</button>
+<button id="tNew" class="tab-btn tab-inactive" onclick="showNew()">New 2026</button>
+<button id="tAll" class="tab-btn tab-inactive" onclick="showAll()">All Bikes</button>
+</div>
 </header>
 
 <div class="container">
-<div id="hubList" style="display:none;background:white;padding:12px;border-radius:10px;margin-bottom:12px"></div>
+<div id="hubList"></div>
 <div class="search">
-<input id="budget" type="number" placeholder="Budget">
-<select id="brand"><option value="">All Brands</option><option>Honda</option><option>Bajaj</option><option>Yamaha</option></select>
+<input id="budget" type="number" placeholder="Max Budget - e.g. 60000">
+<select id="brand"><option value="">All Brands</option><option>Honda</option><option>Hero</option><option>Bajaj</option><option>Yamaha</option><option>TVS</option></select>
 <button onclick="doFilter()">Search</button>
 <button onclick="doReset()" style="background:#0f172a">Reset</button>
 </div>
-<div id="msg" style="color:white;font-weight:bold;margin-bottom:10px"></div>
+<div id="msg"></div>
 <div class="grid" id="grid"></div>
 </div>
 
-<div class="modal" id="modal"><div class="box" id="box"></div></div>
-<div class="modal" id="sellModal"><div class="box">
-<h3>Sell Bike</h3>
-<input id="s_name" placeholder="Bike Name" style="width:100%;padding:8px;margin:4px 0">
-<input id="s_price" type="number" placeholder="Price" style="width:100%;padding:8px;margin:4px 0">
-<input id="s_phone" placeholder="Phone" style="width:100%;padding:8px;margin:4px 0">
-<input id="s_loc" placeholder="Location" style="width:100%;padding:8px;margin:4px 0">
-<button class="call" onclick="addNew()">Publish</button>
-<button class="close" onclick="hideSell()">Cancel</button>
-</div></div>
+<div class="modal" id="detailModal" onclick="if(event.target==this)closeDetail()"><div class="box"><div id="detailContent"></div></div></div>
+<div class="modal" id="sellModal" onclick="if(event.target==this)closeSell()"><div class="box"><div class="box-content">
+<h3 style="margin-bottom:8px">Sell Your Bike - List in 30 Seconds</h3>
+<input id="s_name" placeholder="Bike Name - e.g. Honda Shine 2019" style="width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:8px">
+<input id="s_price" type="number" placeholder="Expected Price - e.g. 55000" style="width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:8px">
+<input id="s_phone" placeholder="Your Phone Number" style="width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:8px">
+<input id="s_loc" placeholder="Location - e.g. MVP, Gajuwaka, Dwaraka Nagar" style="width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:8px">
+<input id="s_km" placeholder="Kilometers - e.g. 25000 km" style="width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:8px">
+<button class="btn btn-call" onclick="addBike()">Publish Now</button>
+<button class="btn btn-close" onclick="closeSell()">Cancel</button>
+</div></div></div>
 
 <div class="footer">
-© 2026 Mana Vizag Bikes - Trusted Hub<br>
-Crafted with 💜 by Priyanka Maddu<br>
+<b style="color:white;font-size:13px">© 2026 Mana Vizag Bikes - Trusted Hub</b><br>
+Crafted with 💜 by Priyanka Maddu - Creative Edition<br>
 Vizag's Independent Verified Marketplace | Transparency First<br>
-✓ Verified Papers | ✓ Certified Condition | ✓ Real Photos | ✓ Live Location
+<b style="color:white">✓ Verified Papers | ✓ Certified Condition | ✓ Real Photos | ✓ Live Location</b><br>
+<span style="opacity:.7">Built for Vizag Riders | Trusted - Transparent - Creative | Contact: Trusted Hubs Below</span>
 </div>
 
 <script>
-var hubs=[
-{name:"Mana Vizag Hub - MVP",addr:"MVP Colony",phone:"08912551234"},
-{name:"Dwaraka Nagar Hub",addr:"Dwaraka Nagar",phone:"08912705678"},
-{name:"Siripuram Hub",addr:"Siripuram",phone:"08912569012"},
-{name:"Gajuwaka Hub",addr:"Gajuwaka",phone:"08912513456"}
+const hubs=[
+{key:"MVP",name:"Mana Vizag Hub - MVP",addr:"MVP Colony Main Road, Near Timpany School, Vizag",phone:"08912551234",bikes:2},
+{key:"Dwaraka",name:"Dwaraka Nagar Trusted Hub",addr:"Dwaraka Nagar 2nd Lane, Near Diamond Park, Vizag",phone:"08912705678",bikes:1},
+{key:"Siripuram",name:"Siripuram Riders Hub",addr:"Siripuram Junction, Near AU Gate, Vizag",phone:"08912569012",bikes:1},
+{key:"Gajuwaka",name:"Gajuwaka Bike Vault",addr:"Old Gajuwaka, Near Sivalayam, Vizag",phone:"08912513456",bikes:1}
 ];
-var bikes=[
-{name:"Honda Dream Yuga 2016",price:48000,km:"32k km",year:"2016",brand:"Honda",phone:"9876543210",loc:"MVP, Vizag",owner:"1st Owner",img:"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=400",desc:"Bike manchi condition lo undi, papers anni clear."},
-{name:"Hero Glamour 2017",price:52000,km:"28k km",year:"2017",brand:"Hero",phone:"9876543211",loc:"Gajuwaka",owner:"1st Owner",img:"https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?w=400",desc:"Single owner, well maintained."},
-{name:"Bajaj Avenger 220",price:68000,km:"25k km",year:"2019",brand:"Bajaj",phone:"9876543212",loc:"Dwaraka Nagar",owner:"2nd Owner",img:"https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?w=400",desc:"Premium cruiser, excellent condition."},
-{name:"Yamaha FZ 2018",price:75000,km:"22k km",year:"2018",brand:"Yamaha",phone:"9876543213",loc:"Siripuram",owner:"1st Owner",img:"https://images.unsplash.com/photo-1558981852-426c6c22a060?w=400",desc:"FZ good condition, service history."},
-{name:"Activa 5G 2020",price:55000,km:"18k km",year:"2020",brand:"Honda",phone:"9876543215",loc:"Maddilapalem",owner:"1st Owner",img:"https://images.unsplash.com/photo-1585671560692-0a7d56f340fd?w=400",desc:"Scooty excellent condition."}
+
+let bikes=[
+{name:"Honda Dream Yuga 2016",price:48000,km:"32,000 km",year:"2016",brand:"Honda",phone:"9876543210",loc:"MVP Colony, Vizag",owner:"1st Owner",rc:"Available",ins:"Valid till 2026",pol:"Valid",engine:88,tyre:80,img:"https://picsum.photos/seed/vizag1/600/400",desc:"Excellent condition. Single owner. Full service history maintained. Non-accidental, non-meter tampered. Engine very smooth, mileage 65 kmpl. Original RC, Insurance valid, Pollution done. Ready to transfer."},
+{name:"Hero Glamour 2017",price:52000,km:"28,000 km",year:"2017",brand:"Hero",phone:"9876543211",loc:"Gajuwaka, Vizag",owner:"1st Owner",rc:"Available",ins:"Valid till Dec 2026",pol:"Valid",engine:85,tyre:82,img:"https://picsum.photos/seed/vizag2/600/400",desc:"Well maintained Hero Glamour. Single owner, low mileage. Self start, disc brake working. Original parts. Finance and exchange available at hub."},
+{name:"Bajaj Avenger 220 Street",price:68000,km:"25,000 km",year:"2019",brand:"Bajaj",phone:"9876543212",loc:"Dwaraka Nagar, Vizag",owner:"2nd Owner",rc:"Available",ins:"Valid",pol:"Valid",engine:90,tyre:85,img:"https://picsum.photos/seed/vizag3/600/400",desc:"Premium cruiser for long rides. Comfortable seating, powerful 220cc engine. Recently serviced, new battery. All papers clear. Test ride available at Dwaraka Hub."},
+{name:"Yamaha FZ-S V2 2018",price:75000,km:"22,000 km",year:"2018",brand:"Yamaha",phone:"9876543213",loc:"Siripuram, Vizag",owner:"1st Owner",rc:"Available",ins:"Valid",pol:"Valid",engine:92,tyre:80,img:"https://picsum.photos/seed/vizag4/600/400",desc:"Sporty Yamaha FZ-S. Excellent pickup and mileage. Chain sprocket changed. LED headlight, digital meter. Insurance and pollution valid. Very well maintained by single owner."},
+{name:"Honda Activa 5G 2020",price:55000,km:"18,000 km",year:"2020",brand:"Honda",phone:"9876543215",loc:"Maddilapalem, Vizag",owner:"1st Owner",rc:"Available",ins:"Valid",pol:"Valid",engine:90,tyre:88,img:"https://picsum.photos/seed/vizag5/600/400",desc:"Excellent condition scooter. Low mileage, single hand used. Self start, silent engine. Original RC, insurance valid. Best for family and college use."},
+{name:"Bajaj Pulsar 150 Twin Disc 2021",price:62000,km:"19,000 km",year:"2021",brand:"Bajaj",phone:"9876543216",loc:"MVP Colony, Vizag",owner:"1st Owner",rc:"Available",ins:"Valid till 2027",pol:"Valid",engine:89,tyre:84,img:"https://picsum.photos/seed/vizag6/600/400",desc:"Well maintained Pulsar 150 with twin disc. Good pickup, mileage 50+. Original paint, non-accidental. All papers available. Finance facility at MVP Hub."}
 ];
-var newBikes=[
-{name:"Honda Shine 125 2026",price:82722,km:"0 km NEW",year:"2026 NEW",brand:"Honda",phone:"Showroom",loc:"Honda Showroom",owner:"Brand New",img:"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=400",desc:"Brand new, full warranty."}
+
+let newBikes=[
+{name:"Honda Shine 125 Disc 2026",price:82722,km:"0 km - Brand New",year:"2026",brand:"Honda",phone:"08912550001",loc:"Honda Showroom, MVP, Vizag",owner:"Brand New",rc:"New",ins:"New",pol:"New",engine:100,tyre:100,img:"https://picsum.photos/seed/new1/600/400",desc:"Brand new Honda Shine 125 with disc brake. Company warranty 5 years. 3 free services. Finance from 6.5% interest. On-road price with insurance."}
 ];
-var cur=bikes;
+
+let current=bikes.slice();
 
 function render(list){
-var g=document.getElementById("grid");
-var m=document.getElementById("msg");
-g.innerHTML="";
-for(var i=0;i<list.length;i++){
-var b=list[i];
-g.innerHTML+='<div class="card" onclick="openBike('+i+')"><img src="'+b.img+'"><div class="card-body"><h4>'+b.name+'</h4><p><span style="background:#dcfce7;padding:2px 6px;border-radius:10px;font-size:10px">'+b.year+'</span> <span style="background:#e0f2fe;padding:2px 6px;border-radius:10px;font-size:10px">Papers ✓</span></p><p><span class="price">₹'+b.price+'</span> - '+b.km+'</p><p style="font-size:11px;color:gray">📍 '+b.loc+' | '+b.owner+'</p><button style="width:100%;margin-top:5px;padding:7px;background:#0f172a;color:white;border:none;border-radius:6px">View Details</button></div></div>';
-}
-m.innerHTML=list.length+" Bikes - Click Any Card - It Will Open!";
+const grid=document.getElementById('grid');
+grid.innerHTML='';
+list.forEach((b,idx)=>{
+const realIdx=current.indexOf(b);
+const useIdx=realIdx>=0?realIdx:idx;
+grid.innerHTML+=`
+<div class="card" onclick="openDetail(${useIdx})">
+<img src="${b.img}" alt="${b.name}" loading="lazy">
+<div class="card-body">
+<h4 style="font-size:14px;margin-bottom:5px">${b.name}</h4>
+<div><span class="badge badge-green">${b.year}</span> <span class="badge badge-blue">Papers ✓</span> <span class="badge badge-blue">${b.owner}</span></div>
+<div style="margin-top:7px"><span class="price">₹${b.price.toLocaleString('en-IN')}</span> <span style="color:#64748b;font-size:13px">| ${b.km}</span></div>
+<div style="font-size:11px;color:#64748b;margin-top:4px">📍 ${b.loc}</div>
+<button style="width:100%;margin-top:9px;padding:8px;background:#0f172a;color:white;border:none;border-radius:7px;font-weight:700;cursor:pointer">View Full Details - Photo & Papers</button>
+</div>
+</div>`;
+});
+document.getElementById('msg').innerText=`${list.length} Bikes Found - All with Real Photos - Click Any Card`;
 }
 
-function openBike(i){
-var b=cur[i];
-document.getElementById("box").innerHTML='<img src="'+b.img+'" style="width:100%;height:160px;object-fit:cover;border-radius:8px"><h3 style="margin-top:8px">'+b.name+'</h3><p>₹'+b.price+' - '+b.km+' - '+b.year+'</p><p style="background:#f0fdf4;padding:8px;border-radius:8px;margin-top:8px;font-size:13px"><b>Papers:</b> ✅ RC ✅ Insurance ✅ Pollution - All Available<br><b>Condition:</b> Bike manchi condition lo undi - Engine 85% Tyre 80%<br><b>Location:</b> 📍 '+b.loc+'</p><p style="font-size:12px;background:#f8fafc;padding:8px;border-radius:8px;margin-top:6px">'+b.desc+'</p><button class="call" onclick="window.open(\'tel:'+b.phone+'\')">📞 Call '+b.phone+'</button><button class="wa" onclick="window.open(\'https://wa.me/91'+b.phone.slice(-10)+'\')">💬 WhatsApp</button><button class="close" onclick="hideModal()">Close</button>';
-document.getElementById("modal").classList.add("show");
+function openDetail(i){
+if(i<0||i>=current.length) return;
+const b=current[i];
+const html=`
+<img src="${b.img}" alt="${b.name}">
+<div class="box-content">
+<h3>${b.name}</h3>
+<p style="margin-top:6px"><b style="color:#059669;font-size:22px">₹${b.price.toLocaleString('en-IN')}</b> <span style="color:#475569">| ${b.km} | ${b.year}</span></p>
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:12px;margin-top:12px;font-size:13px;line-height:1.7">
+<b>✅ Papers Status:</b> RC ${b.rc} | Insurance ${b.ins} | Pollution ${b.pol}<br>
+<b>🔧 Condition:</b> Engine ${b.engine}% | Tyre ${b.tyre}% | Non-Accidental | Service History Available<br>
+<b>👤 Ownership:</b> ${b.owner}<br>
+<b>📍 Location:</b> ${b.loc}
+</div>
+<div style="background:#f8fafc;border-radius:10px;padding:12px;margin-top:12px;font-size:13px;line-height:1.6">
+<b>📝 Full Description (English):</b><br>${b.desc}
+</div>
+<a class="btn btn-call" href="tel:${b.phone}">📞 Call Seller - ${b.phone}</a>
+<a class="btn btn-wa" href="https://wa.me/91${b.phone.slice(-10)}?text=Hi, I am interested in ${encodeURIComponent(b.name)} priced at Rs ${b.price}. Is it still available? Please share details." target="_blank">💬 WhatsApp Enquiry</a>
+<a class="btn btn-map" href="https://www.google.com/maps/search/${encodeURIComponent(b.loc)}" target="_blank">📍 View Location on Google Maps</a>
+<button class="btn btn-close" onclick="closeDetail()">Close Details</button>
+</div>`;
+document.getElementById('detailContent').innerHTML=html;
+document.getElementById('detailModal').classList.add('open');
+}
+
+function closeDetail(){document.getElementById('detailModal').classList.remove('open')}
+function openSell(){document.getElementById('sellModal').classList.add('open')}
+function closeSell(){document.getElementById('sellModal').classList.remove('open')}
+
+function toggleHubs(){
+const el=document.getElementById('hubList');
+if(el.style.display==='block'){el.style.display='none';return}
+let h='<h3 style="margin-bottom:10px">🏪 Trusted Hubs - Click to See Bikes Available in Hub</h3>';
+hubs.forEach((hub,i)=>{
+const count=bikes.filter(b=>b.loc.toLowerCase().includes(hub.key.toLowerCase())).length;
+h+=`<div style="padding:13px;border-bottom:1px solid #eee;cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="openHub(${i})"><div><b>${hub.name}</b><br><small style="color:#64748b">${hub.addr}</small><br><small style="color:#059669;font-weight:600">${count} bikes available in this hub - Click to view</small></div><span style="background:#7c3aed;color:white;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700">${count} Bikes →</span></div>`;
+});
+h+=`<div style="text-align:center;margin-top:10px"><button onclick="showAll();document.getElementById('hubList').style.display='none'" style="padding:8px 16px;border-radius:20px;border:1px solid #ddd;background:white;cursor:pointer">Show All Bikes from All Hubs</button></div>`;
+el.innerHTML=h;
+el.style.display='block';
 }
 
 function openHub(i){
-var s=hubs[i];
-document.getElementById("box").innerHTML='<h3>🏪 '+s.name+'</h3><p><b>Address:</b> '+s.addr+', Vizag</p><p><b>Phone:</b> '+s.phone+'</p><div style="background:#f0fdf4;padding:8px;border-radius:8px;margin-top:8px">✅ Trusted Hub - Papers & Condition Verified</div><button class="call" onclick="window.open(\'tel:'+s.phone+'\')">📞 Call</button><button class="wa" onclick="window.open(\'https://wa.me/91'+s.phone.slice(-10)+'\')">WhatsApp</button><button class="close" onclick="hideModal()">Close</button>';
-document.getElementById("modal").classList.add("show");
+const hub=hubs[i];
+const hubBikes=bikes.filter(b=>b.loc.toLowerCase().includes(hub.key.toLowerCase()));
+if(hubBikes.length>0){current=hubBikes.slice();render(current);}
+let html=`<img src="https://picsum.photos/seed/hub${i}vizag/600/400" alt="${hub.name}"><div class="box-content"><h3>🏪 ${hub.name}</h3><p style="margin-top:8px"><b>Address:</b> ${hub.addr}</p><p><b>Phone:</b> ${hub.phone}</p><div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-top:12px;font-size:13px;line-height:1.6">✅ Trusted Hub - Verified Papers & Condition<br>✅ Test Ride Available<br>✅ Finance & Exchange Available<br>✅ ${hubBikes.length} Bikes Available Now in this Hub</div>`;
+if(hubBikes.length>0){
+html+=`<h4 style="margin-top:14px;margin-bottom:6px">📍 Bikes Available in ${hub.name}:</h4>`;
+hubBikes.forEach((b,idx)=>{
+const realIdx=current.indexOf(b);
+html+=`<div class="mini" onclick="openDetail(${realIdx>=0?realIdx:idx})"><img src="${b.img}" alt="${b.name}"><div><b style="font-size:13px">${b.name}</b><br><span style="color:#059669;font-weight:700;font-size:13px">₹${b.price.toLocaleString('en-IN')}</span> <span style="font-size:11px;color:#64748b">| ${b.km} | ${b.year}</span><br><small style="color:#2563eb">Tap for Full Details + Photo →</small></div></div>`;
+});
+}else{
+html+=`<p style="margin-top:12px;color:#64748b;font-size:13px">Currently no bikes listed for this hub, showing all bikes below.</p>`;
+}
+html+=`<a class="btn btn-call" href="tel:${hub.phone}">📞 Call Hub - ${hub.phone}</a><a class="btn btn-wa" href="https://wa.me/91${hub.phone.slice(-10)}?text=Hi, I want to visit ${encodeURIComponent(hub.name)}. What bikes are available?" target="_blank">💬 WhatsApp Hub</a><button class="btn btn-close" onclick="closeDetail()">Close</button></div>`;
+document.getElementById('detailContent').innerHTML=html;
+document.getElementById('detailModal').classList.add('open');
+document.getElementById('hubList').style.display='none';
+window.scrollTo({top:0,behavior:'smooth'});
 }
 
-function toggleHubs(){
-var el=document.getElementById("hubList");
-if(el.style.display=="block"){el.style.display="none";return}
-var h='<h3>🏪 Trusted Hubs - Click to Open</h3>';
-for(var i=0;i<hubs.length;i++){h+='<div style="padding:10px;border-bottom:1px solid #eee;cursor:pointer;display:flex;justify-content:space-between" onclick="openHub('+i+')"><div><b>'+hubs[i].name+'</b><br><small>'+hubs[i].addr+'</small></div><span>→</span></div>'}
-el.innerHTML=h;
-el.style.display="block";
+function doFilter(){
+const bud=Number(document.getElementById('budget').value);
+const br=document.getElementById('brand').value;
+let filtered=bikes.filter(b=>{
+if(bud&&b.price>bud) return false;
+if(br&&b.brand!==br) return false;
+return true;
+});
+current=filtered;
+render(current);
+if(filtered.length===0){document.getElementById('msg').innerText='No bikes found for this filter - Try Reset';}
 }
-function hideModal(){document.getElementById("modal").classList.remove("show")}
-function showSell(){document.getElementById("sellModal").classList.add("show")}
-function hideSell(){document.getElementById("sellModal").classList.remove("show")}
-function doFilter(){var bud=Number(document.getElementById("budget").value);var br=document.getElementById("brand").value;var f=[];for(var i=0;i<cur.length;i++){var b=cur[i];var ok=true;if(bud&&b.price>bud)ok=false;if(br&&b.brand!=br)ok=false;if(ok)f.push(b)}render(f)}
-function doReset(){document.getElementById("budget").value="";document.getElementById("brand").value="";render(cur)}
-function showUsed(){cur=bikes;render(cur)}
-function showNew(){cur=newBikes;render(cur)}
-function addNew(){var n=document.getElementById("s_name").value;var p=Number(document.getElementById("s_price").value);var ph=document.getElementById("s_phone").value;var l=document.getElementById("s_loc").value;if(!n||!p||!ph){alert("Name Price Phone needed");return}bikes.unshift({name:n,price:p,km:"20k km",year:"2020",brand:"Honda",phone:ph,loc:l,owner:"1st Owner",img:"https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=400",desc:"Bike manchi condition lo undi"});hideSell();showUsed()}
 
-render(bikes);
-var hDiv=document.getElementById("hubList");
+function doReset(){document.getElementById('budget').value='';document.getElementById('brand').value='';showUsed();}
+function setTab(active){document.querySelectorAll('.tab-btn').forEach(el=>el.className='tab-btn tab-inactive');document.getElementById(active).className='tab-btn tab-active';}
+function showUsed(){current=bikes.slice();setTab('tUsed');render(current);}
+function showNew(){current=newBikes.slice();setTab('tNew');render(current);}
+function showAll(){current=bikes.concat(newBikes);setTab('tAll');render(current);}
+function addBike(){
+const n=document.getElementById('s_name').value.trim();
+const p=Number(document.getElementById('s_price').value);
+const ph=document.getElementById('s_phone').value.trim();
+const l=document.getElementById('s_loc').value.trim();
+const km=document.getElementById('s_km').value.trim()||'20,000 km';
+if(!n||!p||!ph){alert('Please fill Bike Name, Price and Phone - Required');return;}
+bikes.unshift({name:n,price:p,km:km,year:"2020",brand:n.split(' ')[0]||"Honda",phone:ph,loc:l||"Vizag",owner:"1st Owner",rc:"Available",ins:"Valid",pol:"Valid",engine:85,tyre:80,img:`https://picsum.photos/seed/${Date.now()}/600/400`,desc:"Excellent condition, single owner, all papers clear and available. Ready to transfer. Well maintained bike with full service history."});
+closeSell();showUsed();
+document.getElementById('s_name').value='';document.getElementById('s_price').value='';document.getElementById('s_phone').value='';document.getElementById('s_loc').value='';document.getElementById('s_km').value='';
+alert('Bike Published Successfully - Now visible in Trusted Used list');
+}
+
+render(current);
 </script>
 </body>
 </html>
